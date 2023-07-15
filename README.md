@@ -17,7 +17,7 @@ Key Features:
 - Order creation
 - Stripe checkout
 - Stripe webhooks
-- MongoDB + Prisma + PlanetScale
+- MongoDB + Prisma 
 
 ### Prerequisites
 
