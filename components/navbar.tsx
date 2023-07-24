@@ -4,9 +4,16 @@ import MainNav from "@/components/main-nav";
 import Container from "@/components/ui/container";
 import NavbarActions from "@/components/navbar-actions";
 import getCategories from "@/actions/get-categories";
+import { UserNav } from "./user-nav";
+import { getDataFromToken } from "@/actions/get-data-from-token";
+import { redirect } from "next/navigation";
 
 const Navbar = async () => {
   const categories = await getCategories();
+  const { userId, userName, userEmail } = getDataFromToken();
+  if (!userId) {
+    redirect('/sign-in');
+  }
 
   return ( 
     <div className="border-b">
@@ -16,7 +23,10 @@ const Navbar = async () => {
             <p className="font-bold text-xl">STORE</p>
           </Link>
           <MainNav data={categories} />
-          <NavbarActions />
+          <div className="ml-auto flex items-center gap-x-4">
+            <NavbarActions />
+            <UserNav {...{ userName, userEmail }} />
+          </div>
         </div>
       </Container>
     </div>
