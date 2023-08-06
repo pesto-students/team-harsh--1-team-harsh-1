@@ -6,6 +6,7 @@ import IconButton from "@/components/ui/icon-button";
 import Currency from "@/components/ui/currency";
 import useCart from "@/hooks/use-cart";
 import { Product } from "@/types";
+import { QuantityInput } from "@/components/ui/quantityInput";
 
 
 interface CartItemProps {
@@ -46,11 +47,14 @@ const CartItem: React.FC<CartItemProps> = ({
             <p className="text-gray-500">{data.color.name}</p>
             <p className="ml-4 border-l border-gray-200 pl-4 text-gray-500">{data.size.name}</p>
           </div>
+
           <Currency value={data.price} />
+
+          <QuantityInput pid={data.id} qty={data.quantity} />
         </div>
       </div>
     </li>
   );
 }
- 
+
 export default CartItem;

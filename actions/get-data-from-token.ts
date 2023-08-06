@@ -11,7 +11,7 @@ interface JwtPayload {
 export function getDataFromToken ():JwtPayload {
   const cookieStore = cookies();
   const token = cookieStore?.get('token')?.value || '';
-  const decodedToken = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
+  const decodedToken = jwt.decode(token) as JwtPayload;
   return decodedToken ?? {} ;
 
 }

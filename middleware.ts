@@ -1,14 +1,14 @@
-import { jwtVerify } from "jose";
+import { decodeJwt } from "jose";
 import { NextResponse } from "next/server";
 import type { NextRequest} from "next/server";
 
-export async function middleware (request: NextRequest){
+export function middleware (request: NextRequest){
   const path = request.nextUrl.pathname
   const isPublicPath = path === '/sign-in' || path === '/sign-up';
   
   // verify jwt token
   const token = request.cookies.get('token')?.value;
-  const verifiedToken = token && (await verifyJwtToken(token))
+  const verifiedToken = token && verifyJwtToken(token)
 
   if(!verifiedToken && !isPublicPath){
     const response = NextResponse.redirect(new URL('/sign-in', request.nextUrl));
@@ -22,9 +22,9 @@ export async function middleware (request: NextRequest){
 
 }
 
-async function verifyJwtToken(token: string): Promise<Boolean> {
+function verifyJwtToken(token: string): Boolean {
   try {
-    const { payload } = await jwtVerify(token, new TextEncoder().encode(process.env.JWT_SECRET));
+    const payload = decodeJwt(token);
     return !!payload;
   } catch (error) {
     console.log('[jwtVerify]',error);
