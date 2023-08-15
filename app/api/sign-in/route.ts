@@ -12,7 +12,7 @@ export async function POST( req: Request ) {
     const response = NextResponse.json(res.data)
 
     // set token to cookies
-    response.cookies?.set('token', res.data?.token, {httpOnly: true})
+    response.cookies?.set('token', res.data?.token, {httpOnly: true, expires: Date.now() + 24 * 60 * 60 * 1000})
 
     return response
 

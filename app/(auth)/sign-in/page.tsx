@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-import Button  from "@/components/ui/button";
+import { Button }  from "@/components/ui/button";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";

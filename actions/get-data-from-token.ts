@@ -13,6 +13,5 @@ export function getDataFromToken ():JwtPayload {
   const token = cookieStore?.get('token')?.value || '';
   const decodedToken = jwt.decode(token) as JwtPayload;
   return decodedToken ?? {} ;
-
 }
 

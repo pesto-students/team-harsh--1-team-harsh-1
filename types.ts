@@ -1,3 +1,13 @@
+export interface Address {
+  id: string
+  userId: string;
+  name: string;
+  phone: string;
+  city: string;
+  state: string;
+  pin: string;
+  full_address: string;
+}
 export interface Product {
   id: string;
   category: Category;
