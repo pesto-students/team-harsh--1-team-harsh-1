@@ -5,6 +5,11 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'INR',
+});
+
 const INDIA_STATE:Record<string, string> = {
   AN: "Andaman and Nicobar Islands",
   AP: "Andhra Pradesh",

@@ -8,6 +8,18 @@ export interface Address {
   pin: string;
   full_address: string;
 }
+
+export interface Order {
+  id: string
+  userId: string;
+  address: Address,
+  isPaid: boolean,
+  orderItems: Array<{
+    product: Product,
+    quantity: number
+  }>
+}
+
 export interface Product {
   id: string;
   category: Category;

@@ -1,8 +1,8 @@
 'use client';
 
-import { LogOut } from "lucide-react"
+import { LogOut, ShoppingBag } from "lucide-react"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -47,11 +47,21 @@ export function UserNav({userName, userEmail}:{userName: string, userEmail: stri
             <p className="text-xs leading-none text-muted-foreground">{userEmail}</p>
           </div>
         </DropdownMenuLabel>
+        
         <DropdownMenuSeparator />
+        
+        <DropdownMenuItem onClick={()=> router.push('/orders')} className="cursor-pointer">
+          <ShoppingBag className="mr-2 h-4 w-4" />
+          <span>My Orders</span>
+        </DropdownMenuItem>
+
+        <DropdownMenuSeparator />
+        
         <DropdownMenuItem onClick={onLogout} className="cursor-pointer">
           <LogOut className="mr-2 h-4 w-4" />
           <span>Log out</span>
         </DropdownMenuItem>
+        
       </DropdownMenuContent>
     </DropdownMenu>
   )

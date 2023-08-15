@@ -12,6 +12,8 @@ import AddressForm from "./address";
 
 const Summary = () => {
   const [selectedAddressId, setSelectedAddressId] = useState('')
+  const [loading, setLoading] = useState(false)
+
   
   const searchParams = useSearchParams();
   const items = useCart((state) => state.items);
@@ -33,6 +35,7 @@ const Summary = () => {
   }, 0);
 
   const onCheckout = async () => {
+    setLoading(true);
     const body = {
       orderProducts: items.map(({ id,quantity }) => ({ id,quantity })),
       addressId: selectedAddressId
@@ -40,6 +43,7 @@ const Summary = () => {
     const response = await axios.post('/api/checkout', body);
 
     window.location = response.data.url;
+    setLoading(false);
   }
 
   return ( 
@@ -56,7 +60,7 @@ const Summary = () => {
 
       <AddressForm {...{selectedAddressId, setSelectedAddressId}}/>
       
-      <Button onClick={onCheckout} disabled={items.length === 0 || !selectedAddressId} className="w-full mt-6">
+      <Button onClick={onCheckout} disabled={items.length === 0 || !selectedAddressId || loading} className="w-full mt-6">
         Checkout
       </Button>
     </div>
