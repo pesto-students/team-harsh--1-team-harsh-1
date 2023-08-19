@@ -22,6 +22,7 @@ export function UserNav({userName, userEmail}:{userName: string, userEmail: stri
     try {
       // setLoading(true);
       const response = await axios.get('/api/sign-out');
+      localStorage.clear()
       router.push('/sign-in');
       toast.success(response.data.message);
     } catch (error: any) {
